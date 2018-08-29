@@ -194,7 +194,7 @@ static const CGFloat kAnchorViewWidth = 1000;
 
     // attach aView to anchorView
     
-    UIOffset *offset = UIOffsetMake((point.x - _view.center.x) ,( point.y - _view.center.y));
+    UIOffset *offset = UIOffsetMake((point.x - _view.bounds.midX) ,( point.y - _view.bounds.midY));
     _viewToAnchorViewAttachmentBehavior =
         [[UIAttachmentBehavior alloc] initWithItem:_view
                                   offsetFromCenter:UIOffsetZero
