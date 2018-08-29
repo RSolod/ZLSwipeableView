@@ -28,13 +28,13 @@ atOffsetFromCenter:(CGPoint)offset
                           delay:0
                         options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                       view.center = [swipeableView convertPoint:swipeableView.center
-                                                        fromView:swipeableView.superview];
-                       CGAffineTransform transform =
-                           CGAffineTransformMakeTranslation(offset.x, offset.y);
-                       transform = CGAffineTransformRotate(transform, rotationRadian);
-                       transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
-                       view.transform = transform;
+                         view.center = [swipeableView convertPoint:swipeableView.center
+                                                          fromView:swipeableView.superview];
+                         CGAffineTransform transform =
+                         CGAffineTransformMakeTranslation(offset.x, offset.y);
+                         transform = CGAffineTransformRotate(transform, rotationRadian);
+                         transform = CGAffineTransformTranslate(transform, -offset.x, -offset.y);
+                         view.transform = transform;
                      }
                      completion:nil];
 }
@@ -43,41 +43,12 @@ atOffsetFromCenter:(CGPoint)offset
               index:(NSUInteger)index
               views:(NSArray<UIView *> *)views
       swipeableView:(ZLSwipeableView *)swipeableView {
-    CGFloat degree = 1;
     NSTimeInterval duration = 0.4;
     CGPoint offset = CGPointMake(0, CGRectGetHeight(swipeableView.bounds) * 0.3);
-    switch (index) {
-    case 0:
-        [self rotateView:view
-                     forDegree:0
-                      duration:duration
-            atOffsetFromCenter:offset
-                 swipeableView:swipeableView];
-        break;
-    case 1:
-        [self rotateView:view
-                     forDegree:degree
-                      duration:duration
-            atOffsetFromCenter:offset
-                 swipeableView:swipeableView];
-        break;
-    case 2:
-        [self rotateView:view
-                     forDegree:-degree
-                      duration:duration
-            atOffsetFromCenter:offset
-                 swipeableView:swipeableView];
-        break;
-    case 3:
-        [self rotateView:view
-                     forDegree:0
-                      duration:duration
-            atOffsetFromCenter:offset
-                 swipeableView:swipeableView];
-        break;
-    default:
-        break;
-    }
+    [self rotateView:view
+           forDegree:0
+            duration:duration
+  atOffsetFromCenter:offset
+       swipeableView:swipeableView];
 }
-
 @end
