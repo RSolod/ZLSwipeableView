@@ -188,27 +188,26 @@ static const CGFloat kAnchorViewWidth = 1000;
 }
 
 - (void)attachView:(CGPoint)point {
-    _anchorView.center = _view.center;
+    _anchorView.center = point;
     _anchorView.backgroundColor = [UIColor blueColor];
     _anchorView.hidden = YES;
-
-    // attach aView to anchorView
     
-    UIOffset *offset = UIOffsetMake((point.x - _view.bounds.midX) ,( point.y - _view.bounds.midY));
+    // attach aView to anchorView
+    CGPoint p = _view.center;
     _viewToAnchorViewAttachmentBehavior =
-        [[UIAttachmentBehavior alloc] initWithItem:_view
-                                  offsetFromCenter:UIOffsetZero
-                                    attachedToItem:_anchorView
-                                  offsetFromCenter:UIOffsetZero];
+    [[UIAttachmentBehavior alloc] initWithItem:_view
+                              offsetFromCenter:UIOffsetMake(-(p.x - point.x), -(p.y - point.y))
+                                attachedToItem:_anchorView
+                              offsetFromCenter:UIOffsetZero];
     _viewToAnchorViewAttachmentBehavior.length = 0;
-
+    
     // attach anchorView to point
     _anchorViewToPointAttachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:_anchorView
-                                                                     offsetFromCenter:offset
+                                                                     offsetFromCenter:UIOffsetZero
                                                                      attachedToAnchor:point];
     _anchorViewToPointAttachmentBehavior.damping = 100;
     _anchorViewToPointAttachmentBehavior.length = 0;
-
+    
     [self addBehavior:_viewToAnchorViewAttachmentBehavior];
     [self addBehavior:_anchorViewToPointAttachmentBehavior];
 }
