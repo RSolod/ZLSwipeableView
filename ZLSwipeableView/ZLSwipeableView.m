@@ -275,7 +275,6 @@
         [_delegate respondsToSelector:@selector(swipeableView:didSwipeView:inDirection:)]) {
         [_delegate swipeableView:self didSwipeView:view inDirection:direction];
     }
-    [self loadViewsIfNeeded];
 }
 
 - (void)scheduleToBeRemoved:(UIView *)view withPredicate:(NSPredicate *)predicate {
